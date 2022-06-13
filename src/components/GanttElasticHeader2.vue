@@ -40,6 +40,8 @@
 <script>
 import Slider from '@vueform/slider'
 import Toggle from "@vueform/toggle";
+import "@vueform/slider/themes/default.css"
+import "@vueform/toggle/themes/default.css"
 
 export default {
   components: {
@@ -88,5 +90,3 @@ export default {
   padding: 8px 12px
 }
 </style>
-<style src="@vueform/slider/themes/default.css"></style>
-<style src="@vueform/toggle/themes/default.css"></style>
