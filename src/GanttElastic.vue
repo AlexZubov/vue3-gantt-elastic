@@ -15,7 +15,6 @@
 </template>
 
 <script>
-
 import dayjs from 'dayjs';
 import MainView from './components/MainView.vue';
 import getStyle from './style.js';
@@ -25,8 +24,6 @@ const ctx = document.createElement('canvas').getContext('2d');
 
 
 import mitt from 'mitt'
-
-
 
 let hourWidthCache = null;
 
