@@ -9,7 +9,7 @@ const path = require("path")
 export default defineConfig({
   build: {
     lib: {
-      entry: path.resolve(__dirname, "src/index.js"),
+      entry: path.resolve(__dirname, "src/lib/main.js"),
       name: "GanttElastic",
       fileName: (format) => `GanttElastic.${format}.js`
     }
