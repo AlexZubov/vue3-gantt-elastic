@@ -65,8 +65,6 @@ export default {
           user:
               '<a href="https://www.google.com/search?q=Austin+Powers" target="_blank" style="color:#0077c0;">Austin Powers</a>',
           type: 'multiple',
-          start: this.getDate(-21 * 3),
-          duration: 2 * 24 * 60 * 60 * 1000,
           subTask: [
             {
               id: "3_1",

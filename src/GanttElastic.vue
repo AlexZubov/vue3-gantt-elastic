@@ -624,7 +624,20 @@ const GanttElastic = {
         return column;
       });
       this.state.options = options;
+      tasks.forEach(task => {
+        if(task.type == 'multiple'){
+          if(typeof task.start == 'undefined' ){
+            task.subTask.sort((a, b) => a.start-b.start)
+            task.start =  task.subTask[0].start
+          }
+          if(typeof task.duration == 'undefined'){
+            task.subTask.sort((a, b) => a.start-b.start)
+            task.duration = task.subTask[task.subTask.length-1].start - task.subTask[0].start
+          }
+        }
+      })
       tasks = this.fillTasks(tasks);
+
       tasks.forEach(task => {
         if(task.type == 'multiple'){
           task.subTask = this.fillTasks(task.subTask);
