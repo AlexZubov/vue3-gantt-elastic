@@ -520,6 +520,7 @@ const GanttElastic = {
         if (typeof task.x === 'undefined') {
           task.x = 0;
         }
+
         if (typeof task.y === 'undefined') {
           task.y = 0;
         }
@@ -567,6 +568,7 @@ const GanttElastic = {
         if (typeof task.duration === 'undefined' && task.hasOwnProperty('endTime')) {
           task.duration = task.endTime - task.startTime;
         }
+
       }
       return tasks;
     },
@@ -623,6 +625,11 @@ const GanttElastic = {
       });
       this.state.options = options;
       tasks = this.fillTasks(tasks);
+      tasks.forEach(task => {
+        if(task.type == 'multiple'){
+          task.subTask = this.fillTasks(task.subTask);
+        }
+      })
       this.state.tasksById = this.resetTaskTree(tasks);
       this.state.taskTree = this.makeTaskTree(this.state.rootTask, tasks);
       this.state.tasks = this.state.taskTree.allChildren.map(childId => this.getTask(childId));
@@ -1393,6 +1400,18 @@ const GanttElastic = {
       this.calculateTaskListColumnsDimensions();
       this.$emit('calendar-recalculate');
       this.syncScrollTop();
+    },
+    taskSetCoordinates(task,index){
+      task.width =
+          task.duration / this.state.options.times.timePerPixel - this.style['grid-line-vertical']['stroke-width'];
+      if (task.width < 0) {
+        task.width = 0;
+      }
+      task.height = this.state.options.row.height;
+      task.x = this.timeToPixelOffsetX(task.startTime);
+      task.y =
+          (this.state.options.row.height + this.state.options.chart.grid.horizontal.gap * 2) * index +
+          this.state.options.chart.grid.horizontal.gap;
     }
   },
 
@@ -1415,21 +1434,23 @@ const GanttElastic = {
       this.state.options.allVisibleTasksHeight = this.getTasksHeight(visibleTasks);
       this.state.options.outerHeight = this.getHeight(maxRows, true) - heightCompensation;
       let len = visibleTasks.length;
+      console.log("visibleTasks");
       for (let index = 0; index < len; index++) {
         let task = visibleTasks[index];
-        task.width =
-          task.duration / this.state.options.times.timePerPixel - this.style['grid-line-vertical']['stroke-width'];
-        if (task.width < 0) {
-          task.width = 0;
+        if(task.type == 'multiple'){
+          for(let subIndex=0; subIndex< task.subTask.length; subIndex++){
+            this.taskSetCoordinates(task.subTask[subIndex],index);
+          }
+        }else {
+          this.taskSetCoordinates(task,index);
         }
-        task.height = this.state.options.row.height;
-        task.x = this.timeToPixelOffsetX(task.startTime);
-        task.y =
-          (this.state.options.row.height + this.state.options.chart.grid.horizontal.gap * 2) * index +
-          this.state.options.chart.grid.horizontal.gap;
+
+
       }
       return visibleTasks;
     },
+
+
 
     /**
      * Style shortcut

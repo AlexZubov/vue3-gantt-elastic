@@ -52,15 +52,34 @@
             <days-highlight></days-highlight>
             <grid></grid>
             <dependency-lines :tasks="root.visibleTasks"></dependency-lines>
-            <g
-              class="gantt-elastic__chart-row-wrapper"
-              :style="{ ...root.style['chart-row-wrapper'] }"
-              v-for="task in root.visibleTasks"
-              :task="task"
-              :key="task.id"
-            >
-              <component :task="task" :is="task.type"></component>
+            <g v-for="task in root.visibleTasks">
+              <g v-if="task.type == 'multiple'"
+                 v-for="subTask in task.subTask"
+                 :task="subTask"
+                 class="gantt-elastic__chart-row-wrapper"
+                 :style="{ ...root.style['chart-row-wrapper'] }"
+                 :key="subTask.id"
+              >
+                <component :task="subTask" :is="subTask.type"></component>
+              </g>
+              <g v-else
+                  class="gantt-elastic__chart-row-wrapper"
+                  :style="{ ...root.style['chart-row-wrapper'] }"
+                  :task="task"
+                  :key="task.id"
+              >
+                <component :task="task" :is="task.type"></component>
+              </g>
             </g>
+<!--            <g-->
+<!--              class="gantt-elastic__chart-row-wrapper"-->
+<!--              :style="{ ...root.style['chart-row-wrapper'] }"-->
+<!--              v-for="task in root.visibleTasks"-->
+<!--              :task="task"-->
+<!--              :key="task.id"-->
+<!--            >-->
+<!--              <component :task="task" :is="task.type"></component>-->
+<!--            </g>-->
           </svg>
         </div>
       </div>

@@ -40,7 +40,7 @@ export default {
           label: 'With great power comes great responsibility',
           user:
               '<a href="https://www.google.com/search?q=Peter+Parker" target="_blank" style="color:#0077c0;">Peter Parker</a>',
-          parentId: 1,
+
           start: this.getDate(-24 * 4),
           duration: 4 * 24 * 60 * 60 * 1000,
           progress: 50,
@@ -61,14 +61,30 @@ export default {
         },
         {
           id: 3,
-          label: 'Courage is being scared to death, but saddling up anyway.',
+          label: "testMultiple",
           user:
-              '<a href="https://www.google.com/search?q=John+Wayne" target="_blank" style="color:#0077c0;">John Wayne</a>',
-          parentId: 2,
-          start: this.getDate(-24 * 3),
+              '<a href="https://www.google.com/search?q=Austin+Powers" target="_blank" style="color:#0077c0;">Austin Powers</a>',
+          type: 'multiple',
+          start: this.getDate(-21 * 3),
           duration: 2 * 24 * 60 * 60 * 1000,
-          progress: 100,
-          type: 'task'
+          subTask: [
+            {
+              id: "3_1",
+              start: this.getDate(-21 * 3),
+              duration: 2 * 24 * 60 * 60 * 1000,
+              progress: 5,
+              type: "task",
+              style: {}
+            },
+            {
+              id: "3_2",
+              start: this.getDate(-2 * 3),
+              duration: 2 * 10 * 60 * 60 * 1000,
+              progress: 100,
+              type: "task",
+              style: {}
+            }
+          ]
         },
         {
           id: 4,
@@ -120,8 +136,7 @@ export default {
           label: 'Devon, the old man wanted me, it was his dying request',
           user:
               '<a href="https://www.google.com/search?q=Knight+Rider" target="_blank" style="color:#0077c0;">Knight Rider</a>',
-          parentId: 2,
-          dependentOn: [6],
+          parentId: 5,
           start: this.getDate(24 * 2),
           duration: 4 * 60 * 60 * 1000,
           progress: 20,
