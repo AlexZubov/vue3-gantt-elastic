@@ -38,10 +38,10 @@
   </div>
 </template>
 <script>
+
 import Slider from '@vueform/slider'
 import Toggle from "@vueform/toggle";
-import "@vueform/slider/themes/default.css"
-import "@vueform/toggle/themes/default.css"
+
 
 export default {
   components: {
@@ -79,6 +79,8 @@ export default {
 }
 </script>
 <style>
+@import '../../node_modules/@vueform/toggle/themes/default.css';
+@import '../../node_modules/@vueform/slider/themes/default.css';
 .header-btn-recenter {
   background: #95A5A6;
   border: none;
@@ -89,4 +91,6 @@ export default {
   font-size: 16px;
   padding: 8px 12px
 }
+
+
 </style>

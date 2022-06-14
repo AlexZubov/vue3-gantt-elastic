@@ -1,6 +1,6 @@
 {
   "name": "gantt-elastic-wrapvue3",
-  "version": "0.0.6",
+  "version": "0.0.8",
   "files": ["dist"],
   "scripts": {
     "dev": "vite",
