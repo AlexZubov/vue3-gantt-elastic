@@ -19,9 +19,9 @@ gantt-elastic Project was wrapped with vue3.
   </div>
 </template>
 <script>
-import GanttElastic from "./GanttElastic.vue";
 import dayjs from "dayjs";
-import GanttElasticHeader2 from "./components/GanttElasticHeader2.vue";
+import {GanttElastic, GanttElasticHeader2} from "gantt-elastic-wrapvue3"
+import "gantt-elastic-wrapvue3/dist/style.css"
 
 export default {
   components: {
