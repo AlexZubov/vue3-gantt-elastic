@@ -625,7 +625,7 @@ const GanttElastic = {
       });
       this.state.options = options;
       tasks.forEach(task => {
-        if(task.type == 'multiple'){
+        if(task.type == 'multiple' && task.subTask.length > 0){
           if(typeof task.start == 'undefined' ){
             task.subTask.sort((a, b) => a.start-b.start)
             task.start =  task.subTask[0].start
