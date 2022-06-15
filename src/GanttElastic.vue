@@ -396,24 +396,31 @@ export function mergeDeepReactive(component, target, ...sources) {
  */
 export function notEqualDeep(left, right, cache = [], path = '') {
   if (typeof right !== typeof left) {
+    console.log("notEqualDeep 1")
     return { left, right, what: path + '.typeof' };
   } else if (Array.isArray(left) && !Array.isArray(right)) {
+    console.log("notEqualDeep 2")
     return { left, right, what: path + '.isArray' };
   } else if (Array.isArray(right) && !Array.isArray(left)) {
+    console.log("notEqualDeep 3")
     return { left, right, what: path + '.isArray' };
   } else if (Array.isArray(left) && Array.isArray(right)) {
     if (left.length !== right.length) {
+      console.log("notEqualDeep 4")
       return { left, right, what: path + '.length' };
     }
     let what;
     for (let index = 0, len = left.length; index < len; index++) {
       if ((what = notEqualDeep(left[index], right[index], cache, path + '.' + index))) {
+        console.log("notEqualDeep 5")
         return what;
       }
     }
   } else if (isObject(left) && !isObject(right)) {
+    console.log("notEqualDeep 6")
     return { left, right, what: path + '.isObject' };
   } else if (isObject(right) && !isObject(left)) {
+    console.log("notEqualDeep 7")
     return { left, right, what: path + '.isObject' };
   } else if (isObject(left) && isObject(right)) {
     for (let key in left) {
@@ -421,16 +428,20 @@ export function notEqualDeep(left, right, cache = [], path = '') {
         continue;
       }
       if (!right.hasOwnProperty(key)) {
+        console.log("notEqualDeep 8")
         return { left, right, what: path + '.' + key };
       }
       let what;
       if ((what = notEqualDeep(left[key], right[key], cache, path + '.' + key))) {
+        console.log("notEqualDeep 9")
         return what;
       }
     }
   } else if (left !== right) {
+    console.log("notEqualDeep 10")
     return { left, right, what: path + '. !==' };
   }
+  console.log("notEqualDeep 11")
   return false;
 }
 
@@ -625,7 +636,7 @@ const GanttElastic = {
       });
       this.state.options = options;
       tasks.forEach(task => {
-        if(task.type == 'multiple' && task.subTask.length > 0){
+        if((task.type == 'multiple') && (task.subTask.length > 0)){
           if(typeof task.start == 'undefined' ){
             task.subTask.sort((a, b) => a.start-b.start)
             task.start =  task.subTask[0].start
@@ -637,9 +648,8 @@ const GanttElastic = {
         }
       })
       tasks = this.fillTasks(tasks);
-
       tasks.forEach(task => {
-        if(task.type == 'multiple'){
+        if(task.type == 'multiple' && (task.subTask.length > 0)){
           task.subTask = this.fillTasks(task.subTask);
         }
       })
@@ -1505,12 +1515,12 @@ const GanttElastic = {
     this.state.unwatchTasks = this.$watch(
       'tasks',
       tasks => {
-        const notEqual = notEqualDeep(tasks, this.outputTasks);
-        if (notEqual) {
+        // const notEqual = notEqualDeep(tasks, this.outputTasks);
+        // if (notEqual) {
+        //   console.log("notEqual setup tasks")
           this.setup('tasks');
-        }
-      },
-      { deep: true }
+        // }
+      }
     );
     this.state.unwatchOptions = this.$watch(
       'options',

@@ -53,7 +53,7 @@
             <grid></grid>
             <dependency-lines :tasks="root.visibleTasks"></dependency-lines>
             <g v-for="task in root.visibleTasks">
-              <g v-if="task.type == 'multiple'"
+              <g v-if="task.type == 'multiple' && (task.subTask.length > 0)"
                  v-for="subTask in task.subTask"
                  :task="subTask"
                  class="gantt-elastic__chart-row-wrapper"
