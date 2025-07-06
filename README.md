@@ -10,7 +10,7 @@ gantt-elastic Project was wrapped with vue3 based on gantt-elastic-wrapvue3
   </header>
 
   <div>
-    <GanttElastic :options="options" :tasks="tasks">
+    <GanttElastic :options="options" :tasks="tasks" @ready="onReadyGantt">
       <template v-slot:header>
         <GanttElasticHeader2 ></GanttElasticHeader2>
       </template>
@@ -261,6 +261,11 @@ export default {
       const currentDay = currentDate.getDate();
       const timeStamp = new Date(`${currentYear}-${currentMonth}-${currentDay} 00:00:00`).getTime();
       return new Date(timeStamp + hours * 60 * 60 * 1000).getTime();
+    },
+    onReadyGantt(instance) {
+      instance.$root.emitter.on('chart-task-click', ({ event, data }) => {
+        console.log('chart-task-click', event, data);
+      });
     }
   }
 }
@@ -305,8 +310,34 @@ array in task object
         }
 ```
 
+## Events
+
+### Events of Chart:
+
+| Event name                  | attributes     |
+|-----------------------------|----------------|
+| chart-[task type]-[event name]] | { event, data } |
+
+Task type: `task, multiple`
+
+Event name: `click, mouseenter, mouseover, mouseout, mousemove, mousedown, mouseup, mousewheel, touchstart, touchmove, touchend`
+
+### Events of TaskList:
+
+| Event name                  | attributes     |
+|-----------------------------|----------------|
+| taskList-[task type]-[event name]] | { event, data, column } |
+
+Task type: `task, multiple`
+
+Event name: `click, mouseenter, mouseover, mouseout, mousemove, mousedown, mouseup, mousewheel, touchstart, touchmove, touchend`
+
+
+## Example view
 ![img.png](img.png)
 
+
+## Install
 ```sh
 npm install --save vue3-gantt-elastic
 ```
