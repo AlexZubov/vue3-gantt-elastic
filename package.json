@@ -1,7 +1,9 @@
 {
-  "name": "gantt-elastic-wrapvue3",
-  "version": "0.0.18",
-  "files": ["dist"],
+  "name": "vue3-gantt-elastic",
+  "version": "0.0.19",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -26,5 +28,10 @@
     "@vitejs/plugin-vue": "^2.3.3",
     "vite": "^2.9.9"
   },
-  "keywords": ["gantt-elastic","gantt","gantt vue","vue gantt"]
+  "keywords": [
+    "gantt-elastic",
+    "gantt",
+    "gantt vue3",
+    "vue3 gantt"
+  ]
 }

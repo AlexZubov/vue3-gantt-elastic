@@ -1,6 +1,6 @@
-# gantt-elastic-wrapvue3
+# vue3-gantt-elastic
 
-gantt-elastic Project was wrapped with vue3.
+gantt-elastic Project was wrapped with vue3 based on gantt-elastic-wrapvue3
 
 #sample code
 ```vue
@@ -308,6 +308,6 @@ array in task object
 ![img.png](img.png)
 
 ```sh
-npm install --save gantt-elastic-wrapvue3
+npm install --save vue3-gantt-elastic
 ```
 
