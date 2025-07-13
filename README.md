@@ -330,7 +330,7 @@ Event name: `click, mouseenter, mouseover, mouseout, mousemove, mousedown, mouse
 
 Task type: `task, multiple`
 
-Event name: `click, mouseenter, mouseover, mouseout, mousemove, mousedown, mouseup, mousewheel, touchstart, touchmove, touchend`
+Event name: `click, dblclick, mouseenter, mouseover, mouseout, mousemove, mousedown, mouseup, mousewheel, touchstart, touchmove, touchend`
 
 
 ## Example view
